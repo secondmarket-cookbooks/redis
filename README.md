@@ -10,8 +10,9 @@ Requirements
 
 * CentOS 5.x, 6.x
 * Red Hat Enterprise Linux 5.x, 6.x
+* Ubuntu 12.04.1 (Precise)
 
-Tested with Redis 2.4.x.
+Tested with Redis 2.4.x on CentOS/Red Hat Enterpise, and Redis 2.2.x on Ubuntu
 
 ## Cookbooks
 
