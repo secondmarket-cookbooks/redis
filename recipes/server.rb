@@ -17,8 +17,15 @@
 # limitations under the License.
 #
 
-package "redis" do
-  action :install
+case node['platform']
+when "ubuntu"
+    package "redis-server" do
+        action :install
+    end
+else
+    package "redis" do
+      action :install
+    end
 end
 
 service "redis" do
