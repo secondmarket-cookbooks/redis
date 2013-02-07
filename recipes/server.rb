@@ -17,11 +17,17 @@
 # limitations under the License.
 #
 
-package "redis" do
-  action :install
+package_name = "redis"
+case node['platform']
+when "ubuntu"
+    package_name = "redis-server"
 end
 
-service "redis" do
+package package_name do
+    action :install
+end
+
+service package_name do
   supports :status => true, :restart => true, :reload => false
   action :enable
 end
@@ -42,7 +48,7 @@ template "/etc/redis.conf" do
   variables(
     :daemonize => daemonize_value
   )
-  notifies :restart, resources(:service => "redis")
+  notifies :restart, resources(:service => package_name)
   action :create
 end
 
@@ -60,17 +66,17 @@ if node['redis']['server']['is_slave']
         variables(
           :redis_master => redis_master.first['fqdn']
           )
-        notifies :restart, resources(:service => "redis")
+        notifies :restart, resources(:service => package_name)
       end
   end
 else
   # Delete the slave config in case it exists, so as not to confuse people
   file "/etc/redis-slave.conf" do
     action :delete
-    notifies :restart, resources(:service => "redis")
+    notifies :restart, resources(:service => package_name)
   end
 end
 
-service "redis" do
+service package_name do
   action :start
 end

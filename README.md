@@ -10,8 +10,9 @@ Requirements
 
 * CentOS 5.x, 6.x
 * Red Hat Enterprise Linux 5.x, 6.x
+* Ubuntu 12.04.1 (Precise)
 
-Tested with Redis 2.4.x.
+Tested with Redis 2.4.x on CentOS/Red Hat Enterpise, and Redis 2.2.x on Ubuntu.
 
 ## Cookbooks
 
@@ -76,7 +77,7 @@ License and Author
 ==================
 
 Author:: Julian C. Dunn <jdunn@secondmarket.com>
-Copyright:: 2012 SecondMarket Labs, LLC.
+Copyright:: 2012-2013 SecondMarket Labs, LLC.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
