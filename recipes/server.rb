@@ -48,7 +48,7 @@ template "/etc/redis.conf" do
   variables(
     :daemonize => daemonize_value
   )
-  notifies :restart, resources(:service => package_name)
+  notifies :restart, "service[#{package_name}]"
   action :create
 end
 
@@ -66,14 +66,14 @@ if node['redis']['server']['is_slave']
         variables(
           :redis_master => redis_master.first['fqdn']
           )
-        notifies :restart, resources(:service => package_name)
+        notifies :restart, "service[#{package_name}]"
       end
   end
 else
   # Delete the slave config in case it exists, so as not to confuse people
   file "/etc/redis-slave.conf" do
     action :delete
-    notifies :restart, resources(:service => package_name)
+    notifies :restart, "service[#{package_name}]"
   end
 end
 
